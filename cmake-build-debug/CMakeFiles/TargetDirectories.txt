@@ -1,0 +1,3 @@
+C:/Users/luisb/Desktop/Uni/Oasencrawler Boehler/cmake-build-debug/CMakeFiles/Oasencrawler_Boehler.dir
+C:/Users/luisb/Desktop/Uni/Oasencrawler Boehler/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/luisb/Desktop/Uni/Oasencrawler Boehler/cmake-build-debug/CMakeFiles/rebuild_cache.dir

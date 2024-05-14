@@ -174,3 +174,43 @@ TEST_CASE("Player operator overloads work correctly", "[player]") {
     REQUIRE(player1 < player2);
     REQUIRE_FALSE(player2 < player1);
 }
+TEST_CASE("Player items are displayed correctly", "[player]") {
+    Player player(0, 0);
+    player.items.push_back(Item("Test Item", "ability"));
+
+    std::ostringstream output;
+    std::streambuf* oldCoutStreamBuf = std::cout.rdbuf();
+    std::cout.rdbuf(output.rdbuf());
+
+    player.printItems();
+
+    std::cout.rdbuf(oldCoutStreamBuf);
+
+    REQUIRE(output.str() == "Deine Items:\n- Test Item\n");
+}
+TEST_CASE("Testing movePlayer function") {
+    World world(new Player(0, 0), new Enemy(3, 3));
+
+    SECTION("Test case G: Player moves to a cell with 'G'") {
+        // Set up the world
+        world.generateWorld();
+
+        // Set the player's position to a known location
+        world.player->x = 2;
+        world.player->y = 2;
+
+        // Set a 'G' cell at a known location
+        world.grid[3][2] = 'G';
+
+        // Move the player to the 'G' cell
+        world.movePlayer('s');
+
+        // Check the player's new position
+        REQUIRE(world.player->x == 3);
+        REQUIRE(world.player->y == 2);
+
+        // Check the player's health (should be unchanged)
+        int expectedHealth = 5; // replace with the player's initial health
+        REQUIRE(world.player->health == expectedHealth);
+    }
+}
